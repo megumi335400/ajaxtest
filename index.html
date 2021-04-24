@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #res{
+            width: 200px;
+            height: 100px;
+            border: solid 1px #90b;
+        }
+    </style>
+</head>
+<body>
+    <button>get</button>
+    <div id="res">
+
+    </div>
+</body>
+<script>
+    let btn = document.getElementsByTagName('button')[0]
+    let res = document.getElementById('res')
+    btn.onclick = function(){
+        // console.log('test');
+        const xhr = new XMLHttpRequest()
+        xhr.open('GET','http://127.0.0.1:3000/server')
+        xhr.send();
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState ===4){
+                if(xhr.status ===200){
+                    // console.log(xhr.status);
+                    // console.log(xhr.statusText);
+                    // console.log(xhr.response);
+                    res.innerHTML = xhr.response
+                }
+            }
+        }
+    }
+</script>
+</html>
